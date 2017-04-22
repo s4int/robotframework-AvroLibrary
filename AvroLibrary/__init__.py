@@ -11,6 +11,9 @@ __version__ = VERSION
 
 class AvroLibrary(object):
 
+    ROBOT_LIBRARY_VERSION = VERSION
+    ROBOT_LIBRARY_SCOPE = 'GLOBAL'
+
     def parse_schema(self, schema_json):
         """Constructs and returns the Schema from the JSON text.
         - ``schema_json``: avro schema as json 
