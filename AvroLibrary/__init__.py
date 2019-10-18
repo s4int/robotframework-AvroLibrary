@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*-
-import avro.schema
 import avro.io
 import io
 import avro.datafile
 import avro.schema
-from version import VERSION
+from . version import VERSION
 
 __version__ = VERSION
-
 
 class AvroLibrary(object):
 
@@ -18,7 +15,7 @@ class AvroLibrary(object):
         """Constructs and returns the Schema from the JSON text.
         - ``schema_json``: avro schema as json 
         """
-        return avro.schema.parse(schema_json)
+        return avro.schema.Parse(schema_json)
 
     def decode(self, encoded, writers_schema=None, readers_schema=None):
         """Reruns decoded data according to schema
@@ -40,7 +37,7 @@ class AvroLibrary(object):
         - ``item``: item to be encoded according to schma 
         - ``writers_schema``: avro writers schema 
         """
-        writer = avro.io.DatumWriter(writers_schema=writers_schema)
+        writer = avro.io.DatumWriter(writers_schema)
         bytes_writer = io.BytesIO()
         encoder = avro.io.BinaryEncoder(bytes_writer)
         writer.write(item, encoder)
