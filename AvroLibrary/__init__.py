@@ -2,7 +2,11 @@ import avro.io
 import io
 import avro.datafile
 import avro.schema
-from . version import VERSION
+import sys
+if sys.version_info.major>=3:
+    from . version import VERSION
+else:
+    from version import VERSION
 
 __version__ = VERSION
 
@@ -15,7 +19,10 @@ class AvroLibrary(object):
         """Constructs and returns the Schema from the JSON text.
         - ``schema_json``: avro schema as json 
         """
-        return avro.schema.Parse(schema_json)
+        if sys.version_info.major>=3:
+            return avro.schema.Parse(schema_json)
+        else:
+            return avro.schema.parse(schema_json)
 
     def decode(self, encoded, writers_schema=None, readers_schema=None):
         """Reruns decoded data according to schema
