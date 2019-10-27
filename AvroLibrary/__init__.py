@@ -3,12 +3,13 @@ import io
 import avro.datafile
 import avro.schema
 import sys
-if sys.version_info.major>=3:
+if sys.version_info.major >= 3:
     from . version import VERSION
 else:
     from version import VERSION
 
 __version__ = VERSION
+
 
 class AvroLibrary(object):
 
@@ -19,7 +20,7 @@ class AvroLibrary(object):
         """Constructs and returns the Schema from the JSON text.
         - ``schema_json``: avro schema as json 
         """
-        if sys.version_info.major>=3:
+        if sys.version_info.major >= 3:
             return avro.schema.Parse(schema_json)
         else:
             return avro.schema.parse(schema_json)
@@ -34,7 +35,7 @@ class AvroLibrary(object):
         """
         bytes_reader = io.BytesIO(encoded)
         decoder = avro.io.BinaryDecoder(bytes_reader)
-        reader = avro.io.DatumReader(writers_schema=writers_schema, readers_schema=readers_schema)
+        reader = avro.io.DatumReader(writers_schema, readers_schema)
         decoded = reader.read(decoder)
         return decoded
 
