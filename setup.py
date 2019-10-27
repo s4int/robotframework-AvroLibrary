@@ -2,15 +2,21 @@
 
 from os.path import join, dirname
 from setuptools import setup
-
-execfile(join(dirname(__file__), 'AvroLibrary', 'version.py'))
+import sys
+REQUIRES = ['robotframework >= 2.6.0', 'avro']
+if sys.version_info.major>=3:
+    filename=join(dirname(__file__), 'AvroLibrary', 'version.py')
+    exec(compile(open(filename).read(),filename, 'exec'))
+    REQUIRES.append('avro-python3')
+else:
+    execfile(join(dirname(__file__), 'AvroLibrary', 'version.py'))
 
 DESCRIPTION = """
 Avro support for Robot Framework.
 """[1:-1]
 
 setup(name         = 'robotframework-avrolibrary',
-      version      = VERSION,
+      version      =  VERSION,
       description  = 'Avro library for Robot Framework',
       long_description = DESCRIPTION,
       author       = 'Marcin Mierzejewski',
@@ -26,9 +32,6 @@ setup(name         = 'robotframework-avrolibrary',
           "Programming Language :: Python",
           "Topic :: Software Development :: Testing"
       ],
-      install_requires = [
-          'robotframework >= 2.6.0',
-          'avro',
-      ],
+      install_requires = REQUIRES,
       packages    = ['AvroLibrary'],
       )
