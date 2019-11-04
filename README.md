@@ -1,3 +1,7 @@
+
+[![Build Status](https://travis-ci.org/s4int/robotframework-AvroLibrary.svg?branch=master)](https://travis-ci.org/s4int/robotframework-AvroLibrary)
+[![Build Status](https://img.shields.io/pypi/v/robotframework-avrolibrary.svg?label=version)](https://pypi.python.org/pypi/robotframework-avrolibrary)
+
 # Robot Framework AvroLibrary
 ## Introduction
 AvroLibrary is a [Robot Framework](http://robotframework.org/) library to interface with [Apache Avro](https://avro.apache.org/).
